@@ -43,7 +43,7 @@ public class examen1 {
 
         // 1a
         Printable printableLambda = s -> System.out.println(s);
-        printableLambda.print("Printable lambda 1a");
+        printableLambda.print("Printable lambda");
 
         // 1b_1
         Consumer<String> consumerLambda = s -> System.out.println(s);
@@ -92,8 +92,8 @@ public class examen1 {
 
         // 9
         sortAgeMR(listPeople);
-        sortAge(listPeople);
-
+        sortNameMR(listPeople);
+        sortHeightMR(listPeople);
     }
 
     public static void supplier() {
@@ -135,14 +135,22 @@ public class examen1 {
             System.out.println(person.name + " - " + person.age + " years old");
         }
 
-        public void printInfo() {
+        public int getAge() {
+            return this.age;
+        }
+
+        public void printNameAndAge() {
             System.out.println(this.name + " - " + this.age + " years old");
+        }
+
+        public void printNameAndHeight() {
+            System.out.println(this.name + " - " + this.height + " meters tall");
         }
     }
 
     private static void sortAge(List<Person> people) {
         // a
-        people.sort(Comparator.comparing(person -> person.age));
+            people.sort(Comparator.comparing(person -> person.age));
 
         // b
         people.forEach(person ->
@@ -150,10 +158,8 @@ public class examen1 {
     }
 
     private static void sortAgeMR(List<Person> people) {
-
         // 9a
-        people.forEach(examen1::printPersonInfo); // Usando método de referencia
-
+        people.sort(Comparator.comparing(Person::getAge));
     }
 
     //check()
@@ -191,11 +197,22 @@ public class examen1 {
                 System.out.println(person.name + " - " + person.age + " years old"));
     }
 
+    private static void sortNameMR(List<Person> people) {
+        // 9b
+        people.forEach(Person::printNameAndAge);
+    }
+
     private static void sortHeight(List<Person> people) {
         // a) Comparator.comparing()
         people.sort(Comparator.comparing(person -> person.height));
 
         // b) forEach() lambda
+        people.forEach(person ->
+                System.out.println(person.name + " - " + person.height + " meters tall"));
+    }
+    private static void sortHeightMR(List<Person> people) {
+
+        // b)
         people.forEach(person ->
                 System.out.println(person.name + " - " + person.height + " meters tall"));
     }
