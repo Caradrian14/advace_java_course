@@ -1,27 +1,17 @@
 package org.example;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.BiPredicate;
-
-import java.util.function.UnaryOperator; // add by 1 is a unary operation
-import java.util.function.BinaryOperator;// multiplying 2 numbers is a binary operation
-
 import java.util.Comparator;
 
 
-public class examen1 {
+public class exam1 {
     @FunctionalInterface
     interface Printable {
         void print(String s);
