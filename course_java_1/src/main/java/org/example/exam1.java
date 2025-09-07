@@ -86,6 +86,20 @@ public class exam1 {
         sortHeightMR(listPeople);
     }
 
+    public static void consumer() {
+        // a)
+        Printable printableLambda = s -> System.out.println(s);
+        printableLambda.print("Printable lambda");
+
+        // b)lambda
+        Consumer<String> consumerLambda = s -> System.out.println(s);
+        consumerLambda.accept("Consumer lambda");
+
+        // b) method reference
+        Consumer<String> consumerMethodRef = System.out::println;
+        consumerMethodRef.accept("Consumer method reference");
+    }
+
     public static void supplier() {
         // 2a
         Retrievable<Integer> retrievableLambda = () -> 77;
@@ -99,15 +113,44 @@ public class exam1 {
     }
 
     public static void predicate() {
-        // 3a: Usando Evaluate con lambda
+        // 3a Evaluate
         Evaluate<Integer> evaluateLambda = i -> i < 0;
         System.out.println("Evaluate (-1): " + evaluateLambda.isNegative(-1)); // true
         System.out.println("Evaluate (+1): " + evaluateLambda.isNegative(+1)); // false
 
-        // 3b: Usando Predicate con lambda
+        // 3b Predicate
         Predicate<Integer> predicateLambda = i -> i < 0;
         System.out.println("Predicate (-1): " + predicateLambda.test(-1)); // true
         System.out.println("Predicate (+1): " + predicateLambda.test(+1)); // false
+
+        // c) Generically-typed check() method
+        System.out.println("Is 4 even? " + check(4, n -> n % 2 == 0)); // true
+        System.out.println("Is 7 even? " + check(7, n -> n % 2 == 0)); // false
+
+        System.out.println("Does 'Mr. Joe Bloggs' start with 'Mr.'? " +
+                check("Mr. Joe Bloggs", s -> s.startsWith("Mr."))); // true
+        System.out.println("Does 'Ms. Ann Bloggs' start with 'Mr.'? " +
+                check("Ms. Ann Bloggs", s -> s.startsWith("Mr."))); // false
+
+        class Person {
+            String name;
+            int age;
+            double height;
+
+            Person(String name, int age, double height) {
+                this.name = name;
+                this.age = age;
+                this.height = height;
+            }
+        }
+
+        Person mike = new Person("Mike", 33, 1.8);
+        Person ann = new Person("Ann", 13, 1.4);
+
+        System.out.println("Is Mike an adult? " +
+                check(mike, p -> p.age >= 18)); // true
+        System.out.println("Is Ann an adult? " +
+                check(ann, p -> p.age >= 18)); // false
     }
 
     static class Person {
@@ -200,8 +243,8 @@ public class exam1 {
         people.forEach(person ->
                 System.out.println(person.name + " - " + person.height + " meters tall"));
     }
-    private static void sortHeightMR(List<Person> people) {
 
+    private static void sortHeightMR(List<Person> people) {
         // b)
         people.forEach(person ->
                 System.out.println(person.name + " - " + person.height + " meters tall"));

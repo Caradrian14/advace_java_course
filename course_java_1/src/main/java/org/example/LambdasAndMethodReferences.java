@@ -56,21 +56,21 @@ public class LambdasAndMethodReferences {
 
         // c
         boolean resultLambdaMr = startsWithLambda.test("Mr.");
-        System.out.println("Lambda - Starts with 'Mr.'? " + resultLambdaMr); // Expected: true
+        System.out.println("Lambda - Starts with 'Mr.'? " + resultLambdaMr); // true
 
         // d
         boolean resultLambdaMs = startsWithLambda.test("Ms.");
-        System.out.println("Lambda - Starts with 'Ms.'? " + resultLambdaMs); // Expected: false
+        System.out.println("Lambda - Starts with 'Ms.'? " + resultLambdaMs); // false
 
         // e
         Predicate<String> startsWithMethodRef = name::startsWith;
 
         // f
         boolean resultMethodRefMr = startsWithMethodRef.test("Mr.");
-        System.out.println("Method Reference - Starts with 'Mr.'? " + resultMethodRefMr); // Expected: true
+        System.out.println("Method Reference - Starts with 'Mr.'? " + resultMethodRefMr); // true
 
         boolean resultMethodRefMs = startsWithMethodRef.test("Ms.");
-        System.out.println("Method Reference - Starts with 'Ms.'? " + resultMethodRefMs); // Expected: false
+        System.out.println("Method Reference - Starts with 'Ms.'? " + resultMethodRefMs); // false
     }
 
     public static void unboundMR() {
@@ -136,30 +136,25 @@ public class LambdasAndMethodReferences {
         list.add("Method Reference");
 
         System.out.println("Method Reference - List contents: " + list); // Expected: [Method Reference]
-
-        // f. Use the overloaded ArrayList constructor with an initial capacity of 10
-        // f.iii. Lambda to create an ArrayList with a specified capacity
+        // f
         Function<Integer, List<String>> arrayListFunctionLambda = capacity -> new ArrayList<>(capacity);
 
-        // f.iv. Re-initialize the list by invoking the lambda with capacity 10
         list = arrayListFunctionLambda.apply(10);
 
-        // f.v. Add "Lambda" to the list
         list.add("Lambda");
 
-        // f.vi. Output the list to show it worked
         System.out.println("Lambda (with capacity) - List contents: " + list); // Expected: [Lambda]
 
-        // g. Method reference version of the lambda from (f.iii)
+        // g
         Function<Integer, List<String>> arrayListFunctionMethodRef = ArrayList::new;
 
-        // g.i. Re-initialize the list by invoking the method reference with capacity 10
+        // g.1
         list = arrayListFunctionMethodRef.apply(10);
 
-        // g.ii. Add "Method Reference" to the list
+        // g.2
         list.add("Method Reference");
 
-        // g.iii. Output the list to show it worked
+        // g.3
         System.out.println("Method Reference (with capacity) - List contents: " + list); // Expected: [Method Reference]
     }
 
