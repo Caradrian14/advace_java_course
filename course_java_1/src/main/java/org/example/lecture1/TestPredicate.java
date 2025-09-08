@@ -1,4 +1,4 @@
-package org.example;
+package org.example.lecture1;
 // package lets_get_certified.lambdas;
 
 import java.util.function.Predicate;// pre-defined in the API
