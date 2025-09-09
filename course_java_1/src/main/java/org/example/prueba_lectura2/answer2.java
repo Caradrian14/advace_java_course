@@ -3,7 +3,7 @@ package org.example.prueba_lectura2;
 import java.util.Arrays;
 import java.util.List;
 
-public class answear2 {
+public class answer2 {
     public static void main(String[] args) {
         List<Item> items = Arrays.asList(
                 new Item(1, "Screw"),
