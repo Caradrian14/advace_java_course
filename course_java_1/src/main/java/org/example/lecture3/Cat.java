@@ -1,7 +1,7 @@
 package org.example.lecture3;
 
 
-public class Cat implements Comparable<Cat>{
+public class Cat implements Comparable<CatClass>{
     private String name;
     private int age;
 
@@ -22,15 +22,16 @@ public class Cat implements Comparable<Cat>{
     }
     @Override
     public boolean equals(Object obj){ // consistency with compareTo
-        if(obj instanceof Cat){
-            Cat otherCat = (Cat)obj;
-            if(name.equals(otherCat.getName()))
+        if(obj instanceof CatClass){
+            CatClass otherCat = (CatClass)obj;
+//            if(name.equals(otherCat.getName()))
                 return true;
         }
         return false;
     }
     @Override
-    public int compareTo(Cat otherCat){ // natural sort order is by name
-        return name.compareTo(otherCat.getName());
+    public int compareTo(CatClass otherCat){ // natural sort order is by name
+//        return name.compareTo(otherCat.getName());
+        return 0;
     }
 }

@@ -21,9 +21,9 @@ public class BinarySearch {
         System.out.println(Collections.binarySearch(names, "Laura"));// -3
     }
     public static void searchCats(){
-        Cat fluffy = new Cat("Fluffy", 1);
-        Cat bella  = new Cat("Bella", 5);
-        List<Cat> catList = Arrays.asList(fluffy, bella);
+        CatClass fluffy = new CatClass("Fluffy", 1);
+        CatClass bella  = new CatClass("Bella", 5);
+        List<CatClass> catList = Arrays.asList(fluffy, bella);
 
         Collections.sort(catList);      // must sort first by natural order - name ascending
         System.out.println(catList);    // [Cat{name=Bella, age=5}, Cat{name=Fluffy, age=1}]
@@ -36,7 +36,7 @@ public class BinarySearch {
 
         // set up the Comparator<T>
         //    int compare(T o1, T o2)
-        Comparator<Cat> byAge = (cat1, cat2) -> cat1.getAge() - cat2.getAge();
+        Comparator<CatClass> byAge = (cat1, cat2) -> cat1.getAge() - cat2.getAge();
         Collections.sort(catList, byAge); // sort by age ascending
         System.out.println(catList);      // [Cat{name=Fluffy, age=1}, Cat{name=Bella, age=5}]
         // API: Searches the specified list for the specified object using the binary search algorithm.

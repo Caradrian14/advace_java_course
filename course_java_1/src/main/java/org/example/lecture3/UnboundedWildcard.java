@@ -16,10 +16,10 @@ public class UnboundedWildcard {
         List<String> names = new ArrayList<String>();
         names.add("Sean");
         showList(names); // List<?> list = new ArrayList<String>();
-        List<Dog> dogs = new ArrayList<Dog>();
+        List<DogClass> dogs = new ArrayList<DogClass>();
         //dogs.add(new Dog());
         showList(dogs); // List<?> list = new ArrayList<Dog>();
-        List<Cat> cats = new ArrayList<Cat>();
+        List<CatClass> cats = new ArrayList<CatClass>();
         //cats.add(new Cat());
         showList(cats); // List<?> list = new ArrayList<Cat>();
 

@@ -1,0 +1,124 @@
+package org.example.lecture3;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Animal{}
+class DogClass extends Animal {}
+class Terrier extends DogClass {}
+class CatClass extends Animal {}
+class Manx extends CatClass {}
+
+public class SuperAndExtends {
+    public static void addAnimal(Animal[] animals){
+        animals[0] = new DogClass();
+        animals[1] = new CatClass();// ArrayStoreException generated -  JVM knows the type
+    }
+    public static void addAnimal(List<Animal> animals){
+        animals.add(new DogClass());
+    }
+    public static void main(String[] args) {
+        // 1a. Polymorphic assignments.
+        // Generics came in in Java 5. Type erasure required to support legacy code.
+        // Thus, generics offer compile time protection.
+        // Arrays have similar issues (polymorphic assignments) but the difference is
+        // in how the compiler and JVM behave. Due to type erasure with generics,
+        // the JVM does not know the types; with arrays the JVM does.
+
+        // First, let's look at arrays
+        DogClass[] dogs0 = {new DogClass(), new DogClass()};
+        addAnimal(dogs0);
+
+        // polyorphism ok for the base type; List -> ArrayList
+        List<CatClass> cats1 = new ArrayList<CatClass>();
+        // polyorphism not ok for the generic type; Animal -> Cat
+        //       List<Animal> animals = new ArrayList<Cat>();
+        List<CatClass> cats2  = new ArrayList<CatClass>(); // generic types on both sides must match
+        List<CatClass> cats3 = new ArrayList<>();     // or use type inference
+        // As the JVM does not know the types (stripped out during type erasure), the
+        // compiler has to step in.
+        //addAnimal(cats2);
+
+        // 1b. 'extends' - polymorphic assignments
+        // Note: extends is read-only
+        List<? extends Animal> animals1 = new ArrayList<Animal>();
+        //animals1.add(new Animal());// read-only
+        List<? extends Animal> animals2 = new ArrayList<DogClass>();
+        List<? extends Animal> animals4 = new ArrayList<Terrier>();
+        List<? extends Animal> animals3 = new ArrayList<CatClass>();
+        List<? extends Animal> animals5 = new ArrayList<Manx>();
+        //List<? extends Animal> animals6 = new ArrayList<Object>();
+
+        // 1c. 'super' - polymorphic assignments
+        List<? super DogClass> dogs1 = new ArrayList<DogClass>();
+        dogs1.add(new DogClass()); // now, can add to the list
+        List<? super DogClass> dogs2 = new ArrayList<Animal>();
+        List<? super DogClass> dogs3 = new ArrayList<Object>();
+        //List<? super DogClass> dogs4 = new ArrayList<Terrier>();
+
+        // 2. declarations for 'extends' and 'super' examples
+        List<Object> objects   = new ArrayList<>(); objects.add(new Object());
+        List<Animal> animals   = new ArrayList<>(); animals.add(new Animal());
+        List<CatClass> cats         = new ArrayList<>(); cats.add(new CatClass());
+        List<Manx> manxCats    = new ArrayList<>(); manxCats.add(new Manx());
+        List<DogClass> dogs         = new ArrayList<>(); dogs.add(new DogClass());
+        List<Terrier> terriers = new ArrayList<>(); terriers.add(new Terrier());
+
+        // 3. extends
+        //      ext(List<? extends Animal> list) => readonly
+        ext(animals); // Animal is-an Animal        - OK
+        ext(cats);    // Cat is-an Animal           - OK
+        ext(manxCats);// Manx is-an Animal          - OK
+        ext(dogs);    // Dog is-an Animal           - OK
+        ext(terriers);// Terrier is-an Animal       - OK
+        //ext(objects); // Object is-not an Animal    - not OK
+
+        // 4. super
+        //      spr(List<? super Cat> list) => modifiable
+        spr(cats);    // Cat is Cat                     - OK
+        spr(animals); // Animal is a supertype of Cat     - OK
+        spr(objects); // Object is a supertype of Cat     - OK
+        //spr(dogs);    // compiler error: Dog is not Cat or a supertype of Cat     - not OK
+        //spr(terriers);// compiler error: Terrier is not Cat or a supertype of Cat - not OK
+        //spr(manxCats);// compiler error: Manx is not Cat or a supertype of Cat    - not OK
+    }
+    public static void spr(List<? super CatClass> list){ // The "lower-bound" is Cat.
+        // IN: Cat, Animal, Object.
+        // The only objects that can safely be added are any type of Cat (including subtypes)
+        // because the method could be getting in a list of Animals or Objects (or Cats).
+        list.add(new CatClass());    // Cat is-a Cat (Cat is-an Animal, Cat is-an Object)
+        list.add(new Manx());   // Manx is-a Cat (Manx is-an Animal, Manx is-an Object)
+
+        //list.add(new DogClass());    // compiler error - Dog is not a Cat
+        //list.add(new Animal()); // compiler error - Animal is not a Cat (Cat is an Animal)
+        //list.add(new Object()); // compiler error - Object is not a Cat (Cat is an Object)
+
+        //for(CatClass cat:list){      // compiler errors when reading - 'list' passed in could be Animal's
+        //    System.out.println(cat);
+        //}
+        //for(Animal a:list){      // compiler errors when reading - 'list' passed in could be Object's
+        //    System.out.println(a);
+        //}
+        for(Object o:list){         // ok - the only thing we can safely say is that the 'list'
+            System.out.println(o);  // coming in can all be treated as Object's
+        }                           // Cat is-an Object, Animal is-an Object, Object is-an Object
+    }
+    public static void ext(List<? extends Animal> list){ // "upper-bound" is Animal
+        // 'extends' implies read-only
+        // IN: List<Animal>, List<Cat>, List<Manx>, List<Dog>, List<Terrier>
+        // If 'extends' allowed us to add to 'list', then we could take in
+        // a List of Cat's and add a Dog to it - thereby breaking type safety.
+        //list.add(new CatClass());      // compiler error if we try to modify 'list'
+        //list.add(new DogClass());      // compiler error if we try to modify 'list'
+        //list.add(new Animal());   // compiler error if we try to modify 'list'
+        //for(DogClass dogClass :list){        // compiler errors reading - 'list' could be a list of Cat's
+        //    System.out.println(dogClass);
+        //}
+        // No compiler errors reading once we treat them as Animal; whether this method receives
+        // in a list of Animal, Cat, Manx, Dog, or Terrier; they are *all* Animal.
+        for(Animal animal:list){
+            System.out.println(animal);
+        }
+    }
+}
