@@ -17,10 +17,10 @@ public class Contact {
     }
     @Override
     public boolean equals(Object obj) { // same instance variables used as in equals()!
-        if (obj instanceof ContactClass) {
-            ContactClass otherContactClass = (ContactClass) obj;
-            return this.name.equals(otherContactClass.name) && this.age == otherContactClass.age;
-        }
+        //if (obj instanceof ContactClass) {
+        //    ContactClass otherContactClass = (ContactClass) obj;
+        //    return this.name.equals(otherContactClass.name) && this.age == otherContactClass.age;
+        //}
         return false;
     }
     @Override

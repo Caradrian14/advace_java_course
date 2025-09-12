@@ -24,11 +24,11 @@ public class Dog implements Comparable<DogClass> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof DogClass) {
-            DogClass otherDog = (DogClass) obj;
-            if (name.equals(otherDog.getName()))
-                return true;
-        }
+        //if (obj instanceof DogClass) {
+        //    DogClass otherDog = (DogClass) obj;
+        //    if (name.equals(otherDog.getName()))
+        //        return true;
+        //}
         return false;
     }
 
@@ -41,6 +41,7 @@ public class Dog implements Comparable<DogClass> {
     @Override
     public int compareTo(DogClass otherDog) { // specifies "natural ordering" for Dog
         // delegate to String which implements Comparable<String>
-        return name.compareTo(otherDog.getName());// sorts alphabetically by name
+        //return name.compareTo(otherDog.getName());// sorts alphabetically by name
+        return 0;
     }
 }
