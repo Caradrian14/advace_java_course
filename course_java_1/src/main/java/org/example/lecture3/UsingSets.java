@@ -43,13 +43,13 @@ public class UsingSets {
 
     public static void hashSet(){
         // HashSet
-        Set<Contact> contactsHS = new HashSet<>();
-        contactsHS.add(new Contact("zoe", 45));
-        contactsHS.add(new Contact("zoe", 45)); // "zoe" only added once (Set)
-        contactsHS.add(new Contact("alice",34));
-        contactsHS.add(new Contact("andrew",35));
-        contactsHS.add(new Contact("brian",36));
-        contactsHS.add(new Contact("carol",37));
+        Set<ContactClass> contactsHES = new HashSet<>();
+        contactsHES.add(new ContactClass("zoe", 45));
+        contactsHES.add(new ContactClass("zoe", 45)); // "zoe" only added once (Set)
+        contactsHES.add(new ContactClass("alice",34));
+        contactsHES.add(new ContactClass("andrew",35));
+        contactsHES.add(new ContactClass("brian",36));
+        contactsHES.add(new ContactClass("carol",37));
         /* Output:
             brian, 36
             andrew, 35
@@ -57,8 +57,8 @@ public class UsingSets {
             alice, 34
             zoe, 45
         */
-        for(Contact contact:contactsHS){
-            System.out.println(contact);
+        for(ContactClass contactClass : contactsHES){
+            System.out.println(contactClass);
         }
         System.out.println();
     }
@@ -71,13 +71,13 @@ public class UsingSets {
         // This implementation spares its clients from the unspecified, generally
         // chaotic ordering provided by HashSet, without incurring the increased cost
         // associated with TreeSet.
-        Set<Contact> contactsLHS = new LinkedHashSet();
-        contactsLHS.add(new Contact("zoe", 45));
-        contactsLHS.add(new Contact("zoe", 45)); // "zoe" only added once (Set)
-        contactsLHS.add(new Contact("alice",34));
-        contactsLHS.add(new Contact("andrew",35));
-        contactsLHS.add(new Contact("brian",36));
-        contactsLHS.add(new Contact("carol",37));
+        Set<ContactClass> contactsLHS = new LinkedHashSet();
+        contactsLHS.add(new ContactClass("zoe", 45));
+        contactsLHS.add(new ContactClass("zoe", 45)); // "zoe" only added once (Set)
+        contactsLHS.add(new ContactClass("alice",34));
+        contactsLHS.add(new ContactClass("andrew",35));
+        contactsLHS.add(new ContactClass("brian",36));
+        contactsLHS.add(new ContactClass("carol",37));
         /*
             zoe, 45
             alice, 34
@@ -85,8 +85,8 @@ public class UsingSets {
             brian, 36
             carol, 37
         */
-        for(Contact contact:contactsLHS){
-            System.out.println(contact);
+        for(ContactClass contactClass :contactsLHS){
+            System.out.println(contactClass);
         }
     }
 }
