@@ -3,7 +3,6 @@ import java.util.*;
 
 public class answer {
     public static void main(String[] args) {
-        // Mapas de entrada
         Map<String, Integer> channelToSubscribers = new TreeMap<>();
         channelToSubscribers.put("JustForLaughs", 120_000);
         channelToSubscribers.put("JustForGags", 10_000);
@@ -16,22 +15,22 @@ public class answer {
         channelToPublisher.put("ContemplationTechniques", "Echhart Tolle");
         channelToPublisher.put("A New Earth", "Echhart Tolle");
 
-        // Mapa para almacenar el resultado: publisher -> total subscribers
+        // publisher -> total subscribers
         Map<String, Integer> publisherToSubscribers = new TreeMap<>();
 
-        // 1. Usar forEach para llenar publisherToSubscribers
+        // 1 forEach to fill publisherToSubscribers
         channelToSubscribers.forEach((channel, subscribers) -> {
             String publisher = channelToPublisher.get(channel);
             publisherToSubscribers.merge(publisher, subscribers, Integer::sum);
         });
 
-        // 2. Usar forEach para mostrar publisherToSubscribers
+        // 2 forEach to show publisherToSubscribers
         System.out.println("Publisher to Subscribers:");
         publisherToSubscribers.forEach((publisher, subscribers) ->
                 System.out.printf("publisher: %s; numSubscribers:%d%n", publisher, subscribers)
         );
 
-        // 3. Calcular el publisher con más y menos suscriptores
+        // 3 publisher with more and less subscribers
         Map.Entry<String, Integer> maxEntry = Collections.max(publisherToSubscribers.entrySet(), Map.Entry.comparingByValue());
         Map.Entry<String, Integer> minEntry = Collections.min(publisherToSubscribers.entrySet(), Map.Entry.comparingByValue());
 
