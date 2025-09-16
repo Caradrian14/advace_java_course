@@ -1,4 +1,4 @@
-package org.example.lecutre6;
+package org.example.lecture6;
 
 
 import java.text.DecimalFormat;
