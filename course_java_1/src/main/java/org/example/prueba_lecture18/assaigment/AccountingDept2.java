@@ -1,6 +1,6 @@
 package org.example.prueba_lecture18.assaigment;
 
-final class AccountingDept extends Department {
+final class AccountingDept2 extends Department2 {
     public void accounting() {
         System.out.println("Custom accounting");
     }

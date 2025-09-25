@@ -1,6 +1,6 @@
 package org.example.prueba_lecture18.assaigment;
 
-final class SoftwareEngineeringDept extends Department {
+final class SoftwareEngineeringDept2 extends Department2 {
     public void swEng() {
         System.out.println("Custom software engineering");
     }

@@ -48,19 +48,19 @@ public final record LecturerRecord(String name, Integer age, Faculty faculty, De
     public void whichDept() {
         switch(dept){
             // switch expression pattern matching
-            case ComputerEngineeringDept ce -> {
+            case assignment.ComputerEngineeringDept ce -> {
                 System.out.println("Dept of: " + ce);
                 ce.compEng();
             }
-            case SoftwareEngineeringDept se -> {
+            case assignment.SoftwareEngineeringDept se -> {
                 System.out.println("Dept of: " + se);
                 se.swEng();
             }
-            case SocialCareDept sc          -> {
+            case assignment.SocialCareDept sc          -> {
                 System.out.println("Dept of: " + sc);
                 sc.socialCare();
             }
-            case AccountingDept acc         -> {
+            case assignment.AccountingDept acc         -> {
                 System.out.println("Dept of: " + acc);
                 acc.accounting();
             }
