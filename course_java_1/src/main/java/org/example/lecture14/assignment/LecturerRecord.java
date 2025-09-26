@@ -56,15 +56,15 @@ public final record LecturerRecord(String name, Integer age, Faculty faculty, De
                 System.out.println("Dept of: " + se);
                 se.swEng();
             }
-            case SocialCareDept sc          -> {
+            case SocialCareDept sc -> {
                 System.out.println("Dept of: " + sc);
                 sc.socialCare();
             }
-            case AccountingDept acc         -> {
+            case AccountingDept acc -> {
                 System.out.println("Dept of: " + acc);
                 acc.accounting();
             }
-            default      -> throw new IllegalArgumentException("Invalid Department: " + dept);
+            default -> throw new IllegalArgumentException("Invalid Department: " + dept);
         }
     }
 

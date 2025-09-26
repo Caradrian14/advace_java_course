@@ -1,4 +1,4 @@
-package pattern_matching_switch;
+package org.example.lecture14.pattern_matching_switch;
 
 public class PatternMatching {
     public static void whatType(Object o){
@@ -10,10 +10,10 @@ public class PatternMatching {
         }
     }
     public static void infoOnType(Object o){
-        switch(o){
-            case String s && s.startsWith("A")-> System.out.println("String beginning with A : "+s);
-            case Integer i && i.intValue() > 10 -> System.out.println("Integer > 10 : "+i);
-            case null -> System.out.println("Null");
+        switch(o){ // problema de java en version anterior
+            //case String s && s.startsWith("A")-> System.out.println("String beginning with A : "+s);
+            //case Integer i && i.intValue() > 10 -> System.out.println("Integer > 10 : "+i);
+            //case null -> System.out.println("Null");
             default -> System.out.println("Not recognised");
         }
     }
