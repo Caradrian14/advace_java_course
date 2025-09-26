@@ -1,4 +1,4 @@
-package assignment;
+package org.example.lecture14.assignment;
 
 public final record LecturerRecord(String name, Integer age, Faculty faculty, Department dept) {
     // custom compact constructor
@@ -48,19 +48,19 @@ public final record LecturerRecord(String name, Integer age, Faculty faculty, De
     public void whichDept() {
         switch(dept){
             // switch expression pattern matching
-            case assignment.ComputerEngineeringDept ce -> {
+            case ComputerEngineeringDept ce -> {
                 System.out.println("Dept of: " + ce);
                 ce.compEng();
             }
-            case assignment.SoftwareEngineeringDept se -> {
+            case SoftwareEngineeringDept se -> {
                 System.out.println("Dept of: " + se);
                 se.swEng();
             }
-            case assignment.SocialCareDept sc          -> {
+            case SocialCareDept sc          -> {
                 System.out.println("Dept of: " + sc);
                 sc.socialCare();
             }
-            case assignment.AccountingDept acc         -> {
+            case AccountingDept acc         -> {
                 System.out.println("Dept of: " + acc);
                 acc.accounting();
             }

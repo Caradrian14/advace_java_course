@@ -1,4 +1,4 @@
-package assignment;
+package org.example.lecture14.assignment;
 
 sealed interface Educational permits Faculty{}
 

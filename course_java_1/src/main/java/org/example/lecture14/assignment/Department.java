@@ -1,4 +1,4 @@
-package assignment;
+package org.example.lecture14.assignment;
 
 abstract public sealed class Department
         permits ComputerEngineeringDept, SoftwareEngineeringDept,

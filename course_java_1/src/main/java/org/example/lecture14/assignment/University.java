@@ -1,4 +1,4 @@
-package assignment;
+package org.example.lecture14.assignment;
 
 public class University {
     public static void main(String[] args) {
