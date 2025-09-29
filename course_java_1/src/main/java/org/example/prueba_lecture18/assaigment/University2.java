@@ -1,7 +1,7 @@
 package org.example.prueba_lecture18.assaigment;
 
 public class University2 {
-    public static void main(String[] args) {
+    void main(String[] args) {
         // 1. Forzar excepciones
         try {
             LecturerRecord2 lecturer1 = new LecturerRecord2("", -5, new EngineeringFaculty(), new SoftwareEngineeringDept2());
